@@ -4,7 +4,7 @@ class ServiceOrdersController < ApplicationController
   # GET /service_orders
   # GET /service_orders.json
   def index
-    @service_orders = ServiceOrder.all
+    @service_orders = ServiceOrder.where(conclusion: [false, nil])
   end
 
   # GET /service_orders/1
@@ -15,6 +15,8 @@ class ServiceOrdersController < ApplicationController
   # GET /service_orders/new
   def new
     @service_order = ServiceOrder.new
+    @clients = Client.all
+    @clients = Client.where(price: ['IS NOT NULL'])
   end
 
   # GET /service_orders/1/edit
@@ -25,7 +27,7 @@ class ServiceOrdersController < ApplicationController
   # POST /service_orders.json
   def create
     @service_order = ServiceOrder.new(service_order_params)
-
+    @service_order.date = Date.today;
     respond_to do |format|
       if @service_order.save
         format.html { redirect_to @service_order, notice: 'Service order was successfully created.' }
