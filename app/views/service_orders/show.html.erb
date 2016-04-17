@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Client:</strong>
+  <%= @service_order.client_id %>
+</p>
+
+<p>
+  <strong>Service:</strong>
+  <%= @service_order.service_id %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @service_order.date %>
+</p>
+
+<p>
+  <strong>Conclusion:</strong>
+  <%= @service_order.conclusion %>
+</p>
+
+<%= link_to 'Edit', edit_service_order_path(@service_order) %> |
+<%= link_to 'Back', service_orders_path %>
